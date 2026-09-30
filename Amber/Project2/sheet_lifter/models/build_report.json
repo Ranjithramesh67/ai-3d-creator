@@ -1,0 +1,128 @@
+{
+ "checks": [
+  {
+   "check": "jack_symmetry",
+   "pass": true,
+   "detail": "jacks at x=+/-500 mm, y=0 (left mirrored to right)"
+  },
+  {
+   "check": "rail_vertical_parallel",
+   "pass": true,
+   "detail": "4 x HGR35 at x=+/-460, y=+/-460, axis = Z"
+  },
+  {
+   "check": "lead_per_motor_rev",
+   "pass": true,
+   "detail": "Tr60x9 / i=24 -> 0.375 mm per motor revolution"
+  },
+  {
+   "check": "micro_step_consistency",
+   "pass": true,
+   "detail": "0.6 mm step = 1.60 motor revolutions"
+  },
+  {
+   "check": "jacking_capacity",
+   "pass": true,
+   "detail": "2 x 5 t = 10 t capacity vs 3 t payload (SF 3.33)"
+  },
+  {
+   "check": "rail_height_capped",
+   "pass": true,
+   "detail": "rail tops finish level with the 300 mm sheet stack at home (z=920), not taller; rail length 694 mm vs 1500 mm before"
+  },
+  {
+   "check": "carriage_on_rail",
+   "pass": true,
+   "detail": "HGW35 block stays fully on the HGR35 rail over the whole 302.25 mm index stroke (block z 506-920, rail 226-920)"
+  },
+  {
+   "check": "guide_rails_share_moment",
+   "pass": true,
+   "detail": "4 corner HGW35CC blocks react the eccentric tipping moment; screws carry axial load only"
+  },
+  {
+   "check": "rails_supported",
+   "pass": true,
+   "detail": "each HGR35 rail is backed by a plumb 90x90 RHS post bolted to a 200x110 cross-beam between the ISMC200 side members; rail flanges bolt to the post faces over their full height, no tilted struts, no free pads"
+  },
+  {
+   "check": "rail_posts_plumb",
+   "pass": true,
+   "detail": "4 x 90x90 support columns are vertical (axis = Z) from the cross-beams at z=200 to the rail tops at z=920"
+  },
+  {
+   "check": "drivetrain_two_sided",
+   "pass": true,
+   "detail": "1:1 bevel gearbox splits to 2 x \u00d830 keyed shafts (L=95 mm) into both jack input barrels at x=+/-252.5 mm"
+  },
+  {
+   "check": "motor_shaft_coupled",
+   "pass": true,
+   "detail": "motor mounting face at y=379 mm, output shaft spans y=269-379 and enters the jaw coupling (179-319) that drives the gearbox input boss at y=179; the gearbox no longer passes through the motor"
+  },
+  {
+   "check": "screw_thread_real",
+   "pass": true,
+   "detail": "Tr60x9 trapezoidal helix, 10-turn phase-aligned segments"
+  },
+  {
+   "check": "analytic_bed_deflection",
+   "pass": true,
+   "detail": "~0.435 mm strip estimate under 3 t (rib network, target <1 mm)"
+  },
+  {
+   "check": "laser_sensor_geometry",
+   "pass": true,
+   "detail": "sensor on the +X side mast at x=468 mm (y=0), pointing down, 68 mm clear of the 800 mm sheet edge; machine top stays open"
+  },
+  {
+   "check": "frame_corner_joints",
+   "pass": true,
+   "detail": "ISMC200 side members run full depth: every corner is a solid lap joint with top and bottom gusset plates + MIG fillet beads"
+  },
+  {
+   "check": "sheet_size_adjustable",
+   "pass": true,
+   "detail": "side guides X 400-800 mm and rear stop Y 400-750 mm ride on continuous 30x24 T-slot tracks and lock anywhere with cam-lever sliders; 50 mm engraved graduations"
+  },
+  {
+   "check": "guide_track_continuous",
+   "pass": true,
+   "detail": "one continuous T-slot track per side (940 mm) lets the guides clamp anywhere, unlike the earlier discrete size plates"
+  },
+  {
+   "check": "jack_held_down",
+   "pass": true,
+   "detail": "each worm-gear jack housing is carried by a 220x320 machined stool on the mid cross-member and bolted down by 2 cast L-clamps (no floating jack)"
+  },
+  {
+   "check": "motor_foot_supported",
+   "pass": true,
+   "detail": "motor foot at z=200 lands on the rail-support cross-beam and rear frame member, with a two-leg saddle at y=660 taking the overhang to the floor"
+  },
+  {
+   "check": "pick_indexing",
+   "pass": true,
+   "detail": "bed indexes up 3.25 mm every 5 sheets removed, keeping the stack top level until the stack is consumed"
+  },
+  {
+   "check": "nut_carries_bed",
+   "pass": true,
+   "detail": "170x140x100 bronze leadscrew nut rides the rotating Tr60x9 screw over 302.25 mm and is bolted to the deck bracket"
+  },
+  {
+   "check": "screw_axially_retained",
+   "pass": true,
+   "detail": "screw held in the jack's upper/lower thrust bearings, threaded z=100-980; nut stays engaged over the whole stroke (no translating screw, no open end)"
+  },
+  {
+   "check": "drag_chain_guided",
+   "pass": true,
+   "detail": "drag chain is a self-supporting C-loop (R45) inside the vertical trough, fixed end at z=450 on the base and moving end on the deck -- no free span"
+  }
+ ],
+ "warnings": [],
+ "instances": 67,
+ "unique_parts": 34,
+ "build_seconds": 38.7
+}

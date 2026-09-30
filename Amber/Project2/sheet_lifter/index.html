@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3-Ton Automatic Sheet Lifting Machine - Cinematic</title>
+<style>
+  :root { --ui: #d8dde3; --accent: #EED202; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0d10;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ui); }
+  #app { position: fixed; inset: 0; }
+  canvas { display: block; }
+
+  .panel { position: fixed; background: rgba(14,17,21,.82); border: 1px solid #2a3038;
+    border-radius: 10px; backdrop-filter: blur(6px); }
+
+  #hud { top: 14px; left: 14px; padding: 12px 16px; min-width: 250px; }
+  #hud h1 { margin: 0 0 6px; font-size: 13px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  #phase { font-size: 17px; font-weight: 600; margin: 2px 0 8px; }
+  #hud .row { display: flex; justify-content: space-between; font-size: 12px;
+    color: #9aa4b0; padding: 1px 0; }
+  #hud .row b { color: #e7ecf1; font-weight: 600; }
+  #sensor { margin-top: 6px; font-size: 12px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    margin-right: 6px; vertical-align: middle; }
+  .dot.on { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+  .dot.off { background: #3a4149; }
+
+  #legend { bottom: 92px; right: 14px; padding: 10px 14px; width: 210px;
+    display: none; }
+  #legend h2 { margin: 0 0 6px; font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: #9aa4b0; }
+  #ramp { height: 14px; border-radius: 3px;
+    background: linear-gradient(90deg,#1b4fd6,#1fa2c8,#28c76f,#f6c445,#e8452c); }
+  #legend .sc { display: flex; justify-content: space-between; font-size: 11px;
+    color: #8b95a1; margin-top: 3px; }
+  #legend .note { font-size: 11px; color: #7d8792; margin-top: 8px; line-height: 1.4; }
+
+  #sizepanel { top: 14px; right: 14px; padding: 10px 14px; width: 220px; }
+  #sizepanel h2 { margin: 0 0 8px; font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: #9aa4b0; }
+  #sizepanel .srow { display: flex; justify-content: space-between; font-size: 12px;
+    color: #9aa4b0; margin-bottom: 2px; }
+  #sizepanel .srow b { color: #e7ecf1; }
+  #sizepanel input[type=range] { width: 100%; accent-color: var(--accent);
+    margin: 0 0 10px; }
+  #sizepanel input[type=number] { width: 100%; box-sizing: border-box;
+    margin: 0 0 4px; padding: 4px 6px; font: inherit; font-size: 12px;
+    color: #e7ecf1; background: #171b20; border: 1px solid #2a3038;
+    border-radius: 4px; }
+  #sizepanel .note { font-size: 10px; line-height: 1.35; color: #6b7681;
+    margin: 0 0 10px; }
+  #sizepanel hr { border: 0; border-top: 1px solid #22272e; margin: 4px 0 10px; }
+  #sizepanel button { width: 100%; }
+
+  #bar { bottom: 14px; left: 50%; transform: translateX(-50%); padding: 10px 14px;
+    display: flex; align-items: center; gap: 12px; width: min(880px, 94vw); }
+  button { background: #1c2229; color: var(--ui); border: 1px solid #313a44;
+    border-radius: 7px; padding: 7px 12px; font-size: 12px; cursor: pointer; }
+  button:hover { border-color: #4a5663; }
+  button.active { background: var(--accent); color: #17181a; border-color: var(--accent); }
+  #scrub { flex: 1; accent-color: var(--accent); }
+  #tcode { font-variant-numeric: tabular-nums; font-size: 12px; color: #9aa4b0;
+    min-width: 78px; text-align: right; }
+  .sep { width: 1px; height: 22px; background: #2a3038; }
+  #hint { position: fixed; bottom: 66px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: #6b7681; }
+  #load { position: fixed; inset: 0; display: flex; align-items: center;
+    justify-content: center; background: #0b0d10; z-index: 20; font-size: 13px;
+    color: #9aa4b0; letter-spacing: .05em; }
+
+  #parts { top: 170px; left: 14px; padding: 8px 10px 10px; width: 246px;
+    max-height: calc(100vh - 320px); display: none; flex-direction: column; }
+  #parts h2 { margin: 0 0 8px; font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: #9aa4b0; display: flex;
+    align-items: center; gap: 6px; }
+  #parts h2 span.t { flex: 1; }
+  #parts h2 button { padding: 3px 7px; font-size: 10px; border-radius: 5px; }
+  #parts_list { overflow-y: auto; padding-right: 4px; }
+  #parts .grp { font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: #5f6a75; margin: 8px 0 3px; }
+  #parts label { display: flex; align-items: center; gap: 7px; font-size: 12px;
+    color: #c4ccd4; padding: 2px 0; cursor: pointer; user-select: none; }
+  #parts label:hover { color: #fff; }
+  #parts input { accent-color: var(--accent); margin: 0; }
+  #parts .sw { width: 11px; height: 11px; border-radius: 2px; flex: none;
+    border: 1px solid #00000055; }
+  #parts_list::-webkit-scrollbar { width: 7px; }
+  #parts_list::-webkit-scrollbar-thumb { background: #313a44; border-radius: 4px; }
+
+  #info { bottom: 150px; left: 50%; transform: translateX(-50%);
+    padding: 10px 14px; width: min(440px, 90vw); display: none; }
+  #info .hd { display: flex; align-items: baseline; gap: 10px; }
+  #info h3 { margin: 0; font-size: 14px; color: var(--accent); font-weight: 600; }
+  #info .sub { font-size: 10px; color: #6b7681; letter-spacing: .06em;
+    text-transform: uppercase; }
+  #info p { margin: 6px 0 0; font-size: 12px; line-height: 1.45; color: #b7c0c9; }
+  #info .x { position: absolute; top: 6px; right: 9px; cursor: pointer;
+    color: #6b7681; font-size: 15px; line-height: 1; }
+  #info .x:hover { color: #fff; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="hud" class="panel">
+  <h1>3-Ton Sheet Lifter</h1>
+  <div id="phase">Initialising</div>
+  <div class="row"><span>Timeline</span><b id="tval">0.00 s</b></div>
+  <div class="row"><span>Bed rise</span><b id="dz">0.000 mm</b></div>
+  <div class="row"><span>Index batch</span><b id="batch">0 / 92</b></div>
+  <div class="row"><span>Sheets left</span><b id="sheets">462 / 462</b></div>
+  <div class="row"><span>Motors</span><b id="rpm">0 rpm</b></div>
+  <div class="row"><span>Payload</span><b id="load_txt">3.00 t</b></div>
+  <div id="sensor"><span class="dot off" id="dot"></span><span id="sens_txt">Laser: sheet present</span></div>
+</div>
+
+<div id="legend" class="panel">
+  <h2>FEA stress overlay</h2>
+  <div id="ramp"></div>
+  <div class="sc"><span>0 MPa</span><span>cool / no yield</span><span>230 MPa</span></div>
+  <div class="note">Von-Mises band on the 1000x1000 bed. Peak stays in the blue
+    band (well below yield) proving negligible deflection under the 3 t
+    distributed load.</div>
+</div>
+
+<div id="sizepanel" class="panel">
+  <h2>Sheet size (aligner)</h2>
+  <div class="srow"><span>Width</span><b id="sw_txt">850 mm</b></div>
+  <input id="sw" type="range" min="400" max="850" step="50" value="850" />
+  <div class="srow"><span>Depth</span><b id="sd_txt">750 mm</b></div>
+  <input id="sd" type="range" min="400" max="750" step="50" value="750" />
+  <button id="bauto" title="Animate different sheet sizes">Auto size</button>
+  <hr />
+  <h2>Pick cycle</h2>
+  <div class="srow"><span>Per sheet</span><b id="pi_txt">5.0 s</b></div>
+  <input id="pint" type="number" min="5" max="60" step="1" value="5"
+    title="Seconds per sheet pick-up (minimum 5 s)" />
+  <div class="note">Seconds each sheet pick-up takes (min 5 s). The total
+    sequence stretches to fit every sheet in the stack.</div>
+</div>
+
+<div id="bar" class="panel">
+  <button id="play">Pause</button>
+  <button id="restart">Restart</button>
+  <span class="sep"></span>
+  <button id="bspeed" title="Simulation speed">0.5x</button>
+  <span class="sep"></span>
+  <button id="bfea" title="FEA heat map">FEA</button>
+  <button id="bvec" title="Load vectors">Vectors</button>
+  <button id="bwire" title="Wireframe">Wire</button>
+  <button id="bframe" title="Hide structure">Frame</button>
+  <button id="bparts" title="Show/hide individual components">Parts</button>
+  <span class="sep"></span>
+  <input id="scrub" type="range" min="0" max="15" step="0.01" value="0" />
+  <div id="tcode">0.00 / 15.0 s</div>
+</div>
+<div id="parts" class="panel">
+  <h2><span class="t">Components</span>
+    <button id="parts_all" title="Show all">All</button>
+    <button id="parts_none" title="Hide all">None</button></h2>
+  <div id="parts_list"></div>
+</div>
+
+<div id="info" class="panel">
+  <span class="x" id="info_x" title="Close">x</span>
+  <div class="hd"><h3 id="info_title">Component</h3>
+    <span class="sub" id="info_sub"></span></div>
+  <p id="info_desc"></p>
+</div>
+
+<div id="hint">drag = orbit &nbsp;|&nbsp; wheel = zoom &nbsp;|&nbsp; space = play/pause
+  &nbsp;|&nbsp; tap / click a part for details</div>
+
+<div id="load">loading geometry and environment...</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/STLLoader.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="web/materials.js"></script>
+<script src="web/machine.js"></script>
+<script src="web/app.js"></script>
+</body>
+</html>

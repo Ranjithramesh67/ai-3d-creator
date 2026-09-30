@@ -1,0 +1,1026 @@
+{
+ "meta": {
+  "units": "mm",
+  "title": "3-Ton Automatic Sheet Lifting Machine",
+  "home_bed_z": 620.0,
+  "stack_base_z": 620.0,
+  "micro_step_mm": 0.6,
+  "screw_lead_mm": 9.0,
+  "jack_ratio": 24.0,
+  "mm_per_motor_rev": 0.375,
+  "stack_height_mm": 300.0,
+  "stack_width_mm": 800.0,
+  "stack_depth_mm": 750.0,
+  "sheet_thickness_mm": 0.65,
+  "sheet_size_range_mm": [
+   400.0,
+   800.0,
+   400.0,
+   750.0
+  ],
+  "size_step_mm": 50.0,
+  "track_y_mm": 425.0,
+  "track_len_mm": 940.0,
+  "fence_t": 12.0,
+  "pick_sheets_per_step": 5,
+  "pick_index_mm": 3.25,
+  "mast_z": 1600.0,
+  "mast_x": 660.0,
+  "mast_arm": 192.0,
+  "chain": {
+   "x": 575.0,
+   "y": -275.0,
+   "run_dy": 45.0,
+   "radius": 45.0,
+   "link": 45.0,
+   "width": 55.0,
+   "thick": 30.0,
+   "fixed_z": 450.0,
+   "z_m_home": 620.0,
+   "z_b_home": 250.0
+  },
+  "envelope": [
+   1400.0,
+   1200.0,
+   1600.0
+  ],
+  "duration_s": 15.0,
+  "fps": 60
+ },
+ "colors": {
+  "base_frame": "#EED202",
+  "rail_support": "#5C6B78",
+  "rail_post": "#5C6B78",
+  "rail_pad": "#6E7377",
+  "hgr35_rail": "#C8CDD2",
+  "hgw35_block": "#1A1A1A",
+  "wiper_seal": "#C0392B",
+  "bed_ribs": "#EED202",
+  "tslot_track": "#B8BDC2",
+  "track_riser": "#5C6B78",
+  "side_guide": "#EED202",
+  "back_guide": "#EED202",
+  "jack_stool": "#5C6B78",
+  "jack_clamp": "#005A5B",
+  "bronze_nut": "#B08D57",
+  "nut_bracket": "#5C6B78",
+  "sheet_stack": "#B9C2C7",
+  "trapez_screw": "#7A7A7A",
+  "worm_gear_jack": "#005A5B",
+  "electric_motor": "#003366",
+  "motor_mount": "#5C6B78",
+  "disc_brake": "#1A1A1A",
+  "jaw_coupling": "#D35400",
+  "bevel_gearbox": "#005A5B",
+  "gearbox_mount": "#5C6B78",
+  "drive_shaft": "#8A8A8A",
+  "sensor_mast": "#EED202",
+  "laser_sensor": "#1A1A1A",
+  "cabinet": "#D3D7D2",
+  "estop": "#C0392B",
+  "hmi": "#101010",
+  "drag_chain": "#111111",
+  "chain_trough": "#5C6B78",
+  "chain_bed_bracket": "#5C6B78"
+ },
+ "instances": [
+  {
+   "part": "base_frame",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "rail_support",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "rail_post",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "sensor_mast",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "cabinet",
+   "group": "static",
+   "pos": [
+    1000.0,
+    -100.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "estop",
+   "group": "static",
+   "pos": [
+    1137.0,
+    -280.0,
+    720.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hmi",
+   "group": "static",
+   "pos": [
+    1139.0,
+    20.0,
+    580.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "chain_trough",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "drag_chain",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "rail_pad",
+   "group": "static",
+   "pos": [
+    -460.0,
+    -460.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hgr35_rail",
+   "group": "static",
+   "pos": [
+    -460.0,
+    -460.0,
+    226.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "rail_pad",
+   "group": "static",
+   "pos": [
+    -460.0,
+    460.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hgr35_rail",
+   "group": "static",
+   "pos": [
+    -460.0,
+    460.0,
+    226.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "rail_pad",
+   "group": "static",
+   "pos": [
+    460.0,
+    -460.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hgr35_rail",
+   "group": "static",
+   "pos": [
+    460.0,
+    -460.0,
+    226.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "rail_pad",
+   "group": "static",
+   "pos": [
+    460.0,
+    460.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hgr35_rail",
+   "group": "static",
+   "pos": [
+    460.0,
+    460.0,
+    226.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "worm_gear_jack",
+   "group": "static",
+   "pos": [
+    -500.0,
+    0.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "trapez_screw",
+   "group": "static",
+   "pos": [
+    -500.0,
+    0.0,
+    100.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "bronze_nut",
+   "group": "lift",
+   "pos": [
+    -500.0,
+    0.0,
+    549.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "drive_shaft",
+   "group": "static",
+   "pos": [
+    -252.5,
+    0.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "jack_stool",
+   "group": "static",
+   "pos": [
+    -500.0,
+    0.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "jack_clamp",
+   "group": "static",
+   "pos": [
+    -500.0,
+    -95.0,
+    244.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "jack_clamp",
+   "group": "static",
+   "pos": [
+    -500.0,
+    95.0,
+    244.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "worm_gear_jack",
+   "group": "static",
+   "pos": [
+    500.0,
+    0.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "trapez_screw",
+   "group": "static",
+   "pos": [
+    500.0,
+    0.0,
+    100.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "bronze_nut",
+   "group": "lift",
+   "pos": [
+    500.0,
+    0.0,
+    549.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "drive_shaft",
+   "group": "static",
+   "pos": [
+    252.5,
+    0.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "jack_stool",
+   "group": "static",
+   "pos": [
+    500.0,
+    0.0,
+    206.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "jack_clamp",
+   "group": "static",
+   "pos": [
+    500.0,
+    -95.0,
+    244.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "jack_clamp",
+   "group": "static",
+   "pos": [
+    500.0,
+    95.0,
+    244.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "bevel_gearbox",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "gearbox_mount",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "jaw_coupling",
+   "group": "static",
+   "pos": [
+    0.0,
+    249.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "disc_brake",
+   "group": "static",
+   "pos": [
+    0.0,
+    349.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "electric_motor",
+   "group": "static",
+   "pos": [
+    0.0,
+    379.0,
+    335.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "motor_mount",
+   "group": "static",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "laser_sensor",
+   "group": "static",
+   "pos": [
+    468.0,
+    0.0,
+    1450.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "bed_ribs",
+   "group": "lift",
+   "pos": [
+    0.0,
+    0.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "nut_bracket",
+   "group": "lift",
+   "pos": [
+    0.0,
+    0.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "chain_bed_bracket",
+   "group": "lift",
+   "pos": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "tslot_track",
+   "group": "lift",
+   "pos": [
+    0.0,
+    -425.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "tslot_track",
+   "group": "lift",
+   "pos": [
+    0.0,
+    425.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "tslot_track",
+   "group": "lift",
+   "pos": [
+    -425.0,
+    0.0,
+    644.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    -425.0,
+    -380.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    -425.0,
+    0.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    -425.0,
+    380.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "tslot_track",
+   "group": "lift",
+   "pos": [
+    425.0,
+    0.0,
+    644.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    425.0,
+    -380.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    425.0,
+    0.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "track_riser",
+   "group": "lift",
+   "pos": [
+    425.0,
+    380.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "hgw35_block",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    -460.0,
+    561.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    -460.0,
+    508.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    -460.0,
+    614.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "hgw35_block",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    460.0,
+    561.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    460.0,
+    508.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    -460.0,
+    460.0,
+    614.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    90.0
+   ]
+  },
+  {
+   "part": "hgw35_block",
+   "group": "lift",
+   "pos": [
+    460.0,
+    -460.0,
+    561.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    460.0,
+    -460.0,
+    508.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    460.0,
+    -460.0,
+    614.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "hgw35_block",
+   "group": "lift",
+   "pos": [
+    460.0,
+    460.0,
+    561.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    460.0,
+    460.0,
+    508.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "wiper_seal",
+   "group": "lift",
+   "pos": [
+    460.0,
+    460.0,
+    614.75
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    -90.0
+   ]
+  },
+  {
+   "part": "side_guide",
+   "group": "lift",
+   "pos": [
+    -408.0,
+    0.0,
+    644.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "side_guide",
+   "group": "lift",
+   "pos": [
+    408.0,
+    0.0,
+    644.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "back_guide",
+   "group": "lift",
+   "pos": [
+    0.0,
+    383.0,
+    668.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "part": "sheet_stack",
+   "group": "lift",
+   "pos": [
+    0.0,
+    0.0,
+    620.0
+   ],
+   "rot": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ ]
+}

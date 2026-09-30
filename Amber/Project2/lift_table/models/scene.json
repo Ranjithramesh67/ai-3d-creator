@@ -1,0 +1,1064 @@
+{
+  "meta": {
+    "units": "mm",
+    "travel_mm": 98.0,
+    "bed_min_z": 82.0,
+    "bed_max_z": 180.0,
+    "lead_mm_per_rev": 8.0,
+    "belt_pitch_length_mm": 413.13,
+    "envelope": [
+      260.0,
+      200.0,
+      240.0
+    ]
+  },
+  "colors": {
+    "rail_front": "#9aa0a6",
+    "rail_rear": "#9aa0a6",
+    "rail_left": "#9aa0a6",
+    "rail_right": "#9aa0a6",
+    "corner_bracket": "#2f80ed",
+    "screw_anchor": "#2d9cdb",
+    "motor_mount": "#27ae60",
+    "tensioner_bracket": "#27ae60",
+    "bearing_608": "#f2c94c",
+    "axle_m8": "#828282",
+    "bearing_lm8uu": "#f2c94c",
+    "pulley_motor": "#eb5757",
+    "pulley_screw": "#eb5757",
+    "motor_nema17": "#4f4f4f",
+    "gt2_belt": "#111111",
+    "guide_rod": "#bdbdbd",
+    "leadscrew_t8": "#bdbdbd",
+    "carriage_bed": "#f2994a",
+    "nut_t8_antibacklash": "#bb6bd9",
+    "top_frame": "#56ccf2",
+    "sensor_bracket": "#27ae60",
+    "wire_mast": "#27ae60",
+    "m3_bolt": "#828282"
+  },
+  "instances": [
+    {
+      "part": "rail_front",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "rail_rear",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "rail_left",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "rail_right",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "corner_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "corner_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "corner_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "corner_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "screw_anchor",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "screw_anchor",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "motor_mount",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "tensioner_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "motor_nema17",
+      "group": "static",
+      "pos": [
+        0.0,
+        56.0,
+        42.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "pulley_motor",
+      "group": "static",
+      "pos": [
+        0.0,
+        56.0,
+        56.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "pulley_screw",
+      "group": "static",
+      "pos": [
+        -80.0,
+        0,
+        56.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "pulley_screw",
+      "group": "static",
+      "pos": [
+        80.0,
+        0,
+        56.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_608",
+      "group": "static",
+      "pos": [
+        0,
+        -34.0,
+        56.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_608",
+      "group": "static",
+      "pos": [
+        -80.0,
+        0,
+        32.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_608",
+      "group": "static",
+      "pos": [
+        -80.0,
+        0,
+        237.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_608",
+      "group": "static",
+      "pos": [
+        80.0,
+        0,
+        32.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_608",
+      "group": "static",
+      "pos": [
+        80.0,
+        0,
+        237.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "gt2_belt",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        53.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "guide_rod",
+      "group": "static",
+      "pos": [
+        -105.0,
+        -75.0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "guide_rod",
+      "group": "static",
+      "pos": [
+        -105.0,
+        75.0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "guide_rod",
+      "group": "static",
+      "pos": [
+        105.0,
+        -75.0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "guide_rod",
+      "group": "static",
+      "pos": [
+        105.0,
+        75.0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "leadscrew_t8",
+      "group": "static",
+      "pos": [
+        -80.0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "leadscrew_t8",
+      "group": "static",
+      "pos": [
+        80.0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "carriage_bed",
+      "group": "carriage",
+      "pos": [
+        0,
+        0,
+        82.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_lm8uu",
+      "group": "carriage",
+      "pos": [
+        -105.0,
+        -75.0,
+        79.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_lm8uu",
+      "group": "carriage",
+      "pos": [
+        -105.0,
+        75.0,
+        79.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_lm8uu",
+      "group": "carriage",
+      "pos": [
+        105.0,
+        -75.0,
+        79.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "bearing_lm8uu",
+      "group": "carriage",
+      "pos": [
+        105.0,
+        75.0,
+        79.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "nut_t8_antibacklash",
+      "group": "carriage",
+      "pos": [
+        -80.0,
+        0,
+        91.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "nut_t8_antibacklash",
+      "group": "carriage",
+      "pos": [
+        80.0,
+        0,
+        91.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "top_frame",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "sensor_bracket",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "wire_mast",
+      "group": "static",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "axle_m8",
+      "group": "static",
+      "pos": [
+        0,
+        -34.0,
+        45.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -15.5,
+        40.5,
+        48.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -15.5,
+        71.5,
+        48.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        15.5,
+        40.5,
+        48.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        15.5,
+        71.5,
+        48.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -120.0,
+        -67.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -97.0,
+        -90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -113.0,
+        -90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -120.0,
+        67.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -97.0,
+        90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -113.0,
+        90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        120.0,
+        -67.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        97.0,
+        -90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        113.0,
+        -90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        120.0,
+        67.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        97.0,
+        90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        113.0,
+        90.0,
+        38.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -120.0,
+        -10.0,
+        36.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -120.0,
+        10.0,
+        36.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        120.0,
+        -10.0,
+        36.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        120.0,
+        10.0,
+        36.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -20.0,
+        -90.0,
+        26.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        20.0,
+        -90.0,
+        26.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        -90.0,
+        -10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        -90.0,
+        10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        -70.0,
+        -10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        -70.0,
+        10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        70.0,
+        -10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        70.0,
+        10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        90.0,
+        -10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "carriage",
+      "pos": [
+        90.0,
+        10.0,
+        96.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        -18.0,
+        0,
+        222.0
+      ],
+      "rot": [
+        180,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        18.0,
+        0,
+        222.0
+      ],
+      "rot": [
+        180,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        116.0,
+        75.0,
+        46.0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "part": "m3_bolt",
+      "group": "static",
+      "pos": [
+        116.0,
+        75.0,
+        222.0
+      ],
+      "rot": [
+        180,
+        0,
+        0
+      ]
+    }
+  ]
+}

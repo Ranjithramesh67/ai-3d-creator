@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dual-Screw Vertical Lift Table - 3D Assembly</title>
+<style>
+  :root { --bg:#0e1116; --panel:#161b22; --line:#232a33; --txt:#e6edf3; --mut:#8b949e; --acc:#f2994a; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--txt);
+    font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; overflow:hidden; }
+  #app { position:fixed; inset:0; }
+  canvas { display:block; }
+  .panel { position:absolute; background:rgba(22,27,34,.92); border:1px solid var(--line);
+    border-radius:10px; backdrop-filter:blur(8px); }
+  #title { top:14px; left:14px; padding:12px 16px; max-width:380px; }
+  #title h1 { margin:0 0 6px; font-size:15px; letter-spacing:.3px; }
+  #title p { margin:0; color:var(--mut); font-size:11.5px; }
+  #title .specs { margin-top:8px; display:grid; grid-template-columns:auto auto; gap:2px 14px; font-size:11.5px; }
+  #title .specs b { color:var(--acc); font-weight:600; }
+  #parts { top:14px; right:14px; padding:10px 12px; width:250px; max-height:70vh; overflow:auto; }
+  #parts h2 { margin:0 0 8px; font-size:12px; color:var(--mut); text-transform:uppercase; letter-spacing:.8px; }
+  .cat { margin:8px 0 2px; color:var(--acc); font-size:11px; text-transform:uppercase; letter-spacing:.6px; }
+  .row { display:flex; align-items:center; gap:8px; padding:2px 0; cursor:pointer; }
+  .row input { accent-color:var(--acc); }
+  .sw { width:10px; height:10px; border-radius:2px; flex:0 0 auto; border:1px solid #0006; }
+  .row span { color:var(--txt); font-size:11.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #hud { bottom:14px; left:50%; transform:translateX(-50%); padding:12px 16px;
+    display:flex; flex-direction:column; gap:10px; width:min(680px,92vw); }
+  .ctrls { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .ctrls button { background:#21262d; color:var(--txt); border:1px solid var(--line);
+    border-radius:7px; padding:6px 12px; cursor:pointer; font:inherit; }
+  .ctrls button:hover { border-color:var(--acc); }
+  .ctrls button.on { background:var(--acc); color:#111; border-color:var(--acc); }
+  .slider { flex:1; min-width:180px; display:flex; align-items:center; gap:8px; }
+  .slider input[type=range] { flex:1; accent-color:var(--acc); }
+  .slider label { color:var(--mut); font-size:11.5px; min-width:56px; }
+  #loading { position:absolute; inset:0; display:grid; place-items:center; background:var(--bg);
+    color:var(--mut); z-index:10; transition:opacity .4s; }
+  .hint { color:var(--mut); font-size:11px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="title" class="panel">
+  <h1>Dual-Screw Vertical Lift Table</h1>
+  <p>Single NEMA17 &middot; closed-loop GT2 belt &middot; 2&times; T8 leadscrews &middot; 4&times; 8&nbsp;mm guide rods</p>
+  <div class="specs">
+    <span>Usable stroke</span><b id="s-stroke">-</b>
+    <span>Lead</span><b id="s-lead">-</b>
+    <span>Resolution</span><b id="s-res">-</b>
+    <span>Belt pitch len.</span><b id="s-belt">-</b>
+    <span>Envelope (X&times;Y&times;Z)</span><b id="s-env">-</b>
+  </div>
+</div>
+
+<div id="parts" class="panel">
+  <h2>Components</h2>
+  <div id="partlist"></div>
+  <div style="margin-top:10px"><label class="row"><input type="checkbox" id="xray"><span class="hint">Hide aluminium frame</span></label></div>
+</div>
+
+<div id="hud" class="panel">
+  <div class="ctrls">
+    <button id="play">Play lift</button>
+    <button id="explodeBtn">Explode</button>
+    <button id="wire">Wireframe</button>
+    <button id="reset">Reset view</button>
+    <span class="hint">drag = orbit &middot; wheel = zoom</span>
+  </div>
+  <div class="slider"><label id="zlab">Bed Z</label><input id="lift" type="range" min="0" max="1000" value="0"></div>
+  <div class="slider"><label>Explode</label><input id="explode" type="range" min="0" max="1000" value="0"></div>
+</div>
+
+<div id="loading">Loading assembly&hellip;</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/STLLoader.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script>
+const CATS = {
+  "Frame": ["rail_front","rail_rear","rail_left","rail_right","corner_bracket","screw_anchor","motor_mount","tensioner_bracket"],
+  "Drive": ["motor_nema17","pulley_motor","pulley_screw","gt2_belt","axle_m8"],
+  "Guides & bearings": ["guide_rod","leadscrew_t8","bearing_608","bearing_lm8uu"],
+  "Carriage": ["carriage_bed","nut_t8_antibacklash"],
+  "Top frame & sensor": ["top_frame","sensor_bracket","wire_mast"],
+  "Fasteners": ["m3_bolt"]
+};
+const LABEL = {
+  rail_front:"2020 rail front", rail_rear:"2020 rail rear", rail_left:"2020 rail left",
+  rail_right:"2020 rail right", corner_bracket:"Corner bracket", screw_anchor:"Screw anchor block",
+  motor_mount:"Motor mount", tensioner_bracket:"Belt tensioner", motor_nema17:"NEMA17 motor",
+  pulley_motor:"GT2 20T (motor)", pulley_screw:"GT2 20T (screw)", gt2_belt:"GT2 belt",
+  axle_m8:"Idler axle M8", guide_rod:"Guide rod 8mm", leadscrew_t8:"T8 leadscrew",
+  bearing_608:"608ZZ bearing", bearing_lm8uu:"LM8UU bearing", carriage_bed:"Lift bed carriage",
+  nut_t8_antibacklash:"T8 anti-backlash nut", top_frame:"Top constraint frame",
+  sensor_bracket:"Sensor bracket", wire_mast:"Wire mast", m3_bolt:"M3 bolt"
+};
+
+let scene, camera, renderer, controls, root;
+const groups = {};          // partname -> [meshes]
+const partVisible = {};
+const instData = [];
+let exploded = 0, explodeTarget = 0, xray = false;
+let bedZ = 82, bedMin = 82, bedMax = 180, playing = false, dir = 1;
+
+init();
+
+async function init() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0e1116);
+  scene.fog = new THREE.Fog(0x0e1116, 900, 1800);
+
+  camera = new THREE.PerspectiveCamera(38, innerWidth/innerHeight, 1, 6000);
+  camera.up.set(0,0,1);
+  camera.position.set(430, -470, 360);
+
+  renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth, innerHeight);
+  document.getElementById('app').appendChild(renderer.domElement);
+
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08;
+  controls.target.set(0,0,110);
+
+  scene.add(new THREE.HemisphereLight(0xdff0ff, 0x1b2026, 0.85));
+  const d1 = new THREE.DirectionalLight(0xffffff, 1.0); d1.position.set(400,-500,700); scene.add(d1);
+  const d2 = new THREE.DirectionalLight(0x88aaff, 0.35); d2.position.set(-500,400,300); scene.add(d2);
+  const d3 = new THREE.DirectionalLight(0xffffff, 0.25); d3.position.set(0,600,-400); scene.add(d3);
+
+  root = new THREE.Group(); scene.add(root);
+  const grid = new THREE.GridHelper(600, 30, 0x2b3440, 0x1a2027);
+  grid.rotation.x = Math.PI/2; grid.position.z = -0.5; scene.add(grid);
+
+  const data = await (await fetch('models/scene.json')).json();
+  bedMin = data.meta.bed_min_z; bedMax = data.meta.bed_max_z;
+  document.getElementById('s-stroke').textContent = data.meta.travel_mm.toFixed(0)+' mm';
+  document.getElementById('s-lead').textContent = data.meta.lead_mm_per_rev+' mm/rev';
+  document.getElementById('s-res').textContent = (data.meta.lead_mm_per_rev/3200*1000).toFixed(1)+' um/step';
+  document.getElementById('s-belt').textContent = (data.meta.belt_pitch_length_mm||0).toFixed(0)+' mm';
+  document.getElementById('s-env').textContent = data.meta.envelope.map(v=>v.toFixed(0)).join(' x ')+' mm';
+  bedZ = bedMin;
+
+  const loader = new THREE.STLLoader();
+  const uniqueParts = [...new Set(data.instances.map(i=>i.part))];
+  const geoms = {};
+  await Promise.all(uniqueParts.map(p => new Promise((res,rej)=>{
+    loader.load('models/stl/'+p+'.stl', g=>{ g.computeVertexNormals(); geoms[p]=g; res(); }, undefined, rej);
+  })));
+
+  const byCenter = new THREE.Vector3(0,0,110);
+  for (const inst of data.instances) {
+    const col = new THREE.Color(data.colors[inst.part] || '#888888');
+    const mat = new THREE.MeshStandardMaterial({color:col, metalness:0.35, roughness:0.55, flatShading:true});
+    const mesh = new THREE.Mesh(geoms[inst.part], mat);
+    mesh.position.set(inst.pos[0], inst.pos[1], inst.pos[2]);
+    mesh.rotation.set(inst.rot[0]*Math.PI/180, inst.rot[1]*Math.PI/180, inst.rot[2]*Math.PI/180);
+    root.add(mesh);
+    (groups[inst.part] ||= []).push(mesh);
+    const carry = inst.group === 'carriage';
+    instData.push({mesh, base:new THREE.Vector3(...inst.pos), carry});
+  }
+
+  buildPartList(data);
+  bindUI();
+  addEventListener('resize', onResize);
+  document.getElementById('loading').style.opacity = 0;
+  setTimeout(()=>document.getElementById('loading').remove(), 500);
+  animate();
+}
+
+function buildPartList(data) {
+  const el = document.getElementById('partlist');
+  const present = new Set(data.instances.map(i=>i.part));
+  for (const [cat, names] of Object.entries(CATS)) {
+    const valid = names.filter(n=>present.has(n));
+    if (!valid.length) continue;
+    const h = document.createElement('div'); h.className='cat'; h.textContent=cat; el.appendChild(h);
+    for (const n of valid) {
+      partVisible[n] = true;
+      const row = document.createElement('label'); row.className='row';
+      row.innerHTML = `<input type="checkbox" checked><span class="sw" style="background:${data.colors[n]}"></span><span>${LABEL[n]||n}</span>`;
+      row.querySelector('input').onchange = e => { partVisible[n]=e.target.checked; applyVisibility(); };
+      el.appendChild(row);
+    }
+  }
+}
+
+function applyVisibility() {
+  for (const [n, arr] of Object.entries(groups)) {
+    for (const m of arr) m.visible = partVisible[n] !== false;
+  }
+  if (xray) for (const n of CATS["Frame"]) (groups[n]||[]).forEach(m=>m.visible=false);
+}
+
+function bindUI() {
+  const lift = document.getElementById('lift'), zlab = document.getElementById('zlab');
+  const explode = document.getElementById('explode');
+  const play = document.getElementById('play');
+  lift.oninput = () => { const t=lift.value/1000; setLift(bedMin + t*(bedMax-bedMin)); };
+  const ebtn = document.getElementById('explodeBtn');
+  ebtn.onclick = () => { exploded = exploded>0.5?0:1; explode.value = exploded*1000; ebtn.classList.toggle('on', exploded>0.5); };
+  explode.oninput = () => { exploded = explode.value/1000; ebtn.classList.toggle('on', exploded>0.5); };
+  play.onclick = () => { playing=!playing; play.classList.toggle('on',playing); play.textContent = playing?'Pause':'Play lift'; };
+  document.getElementById('wire').onclick = e => { root.traverse(o=>{ if(o.isMesh){ o.material.wireframe=!o.material.wireframe; } }); e.target.classList.toggle('on'); };
+  document.getElementById('reset').onclick = () => { camera.position.set(430,-470,360); controls.target.set(0,0,110); controls.update(); };
+  document.getElementById('xray').onchange = e => { xray=e.target.checked; applyVisibility(); };
+}
+
+function setLift(z) {
+  bedZ = z;
+  const d = z - bedMin;
+  for (const it of instData) if (it.carry) it.mesh.position.z = it.base.z + d;
+  document.getElementById('zlab').textContent = z.toFixed(0)+' mm';
+  document.getElementById('lift').value = (bedMax>bedMin)?(z-bedMin)/(bedMax-bedMin)*1000:0;
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  if (playing) {
+    setLift(bedZ + dir*0.9);
+    if (bedZ>=bedMax){bedZ=bedMax;dir=-1;} if (bedZ<=bedMin){bedZ=bedMin;dir=1;}
+  }
+  // smooth explode
+  const target = exploded*1.6;
+  if (Math.abs(target - explodeTarget) > 1e-4) {
+    explodeTarget += (target-explodeTarget)*0.12;
+    for (const it of instData) {
+      if (it.carry) continue;
+      const v = it.base.clone().sub(new THREE.Vector3(0,0,110)).multiplyScalar(explodeTarget);
+      it.mesh.position.set(it.base.x+v.x, it.base.y+v.y, it.base.z+v.z);
+    }
+  }
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+function onResize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); }
+</script>
+</body>
+</html>
